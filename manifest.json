@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Emoji Searcher",
+  "version": "1.1",
+  "description": "Search and insert emojis in any text field using :keyword",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["emoji_data.json"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "emoji-searcher@example.com"
+    }
+  }
+}
