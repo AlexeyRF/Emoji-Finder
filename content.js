@@ -188,16 +188,25 @@ document.addEventListener('input', (e) => {
 document.addEventListener('keydown', (e) => {
     if (!activePanel) return;
 
-    if (e.key === 'ArrowDown') {
+    if (e.key === 'ArrowRight') {
         selectedIndex = (selectedIndex + 1) % filteredEmojis.length;
         renderResults();
         e.preventDefault();
         e.stopPropagation();
-    } else if (e.key === 'ArrowUp') {
+    } else if (e.key === 'ArrowLeft') {
         selectedIndex = (selectedIndex - 1 + filteredEmojis.length) % filteredEmojis.length;
         renderResults();
         e.preventDefault();
         e.stopPropagation();
+    } else if (e.key === 'ArrowDown') {
+        // Optional: still allow down for selection if query matches many
+        selectedIndex = Math.min(selectedIndex + 5, filteredEmojis.length - 1);
+        renderResults();
+        e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+        selectedIndex = Math.max(selectedIndex - 5, 0);
+        renderResults();
+        e.preventDefault();
     } else if (e.key === 'Enter' || e.key === 'Tab') {
         if (filteredEmojis[selectedIndex]) {
             insertEmoji(filteredEmojis[selectedIndex].emoji);
