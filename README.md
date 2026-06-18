@@ -1,57 +1,152 @@
-# Emoji Searcher - Browser Extension
+# Emoji Searcher - Поиск эмодзи
 
-A lightweight, fast, and unobtrusive browser extension that allows you to search and insert emojis in almost any text input field across the web using a simple `:keyword` trigger.
+Удобный и быстрый инструмент для поиска и вставки эмодзи. Проект включает в себя как **браузерное расширение**, так и **системное приложение для Windows**, позволяющее вставлять эмодзи в любой программе.
+
+## Возможности
+
+- **Системное приложение (Windows)**: Работает поверх всех окон, активируется горячей клавишей и позволяет вставить эмодзи в любой мессенджер или программу.
+- **Браузерное расширение**: Поддерживает ввод `:ключевое_слово` в стандартных полях `<input>`, `<textarea>` и сложных полях `contenteditable` (например, поиск YouTube, WhatsApp Web, Slack).
+- **Двуязычный поиск**: Поиск по тегам и названиям на **английском** и **русском** языках.
+- **Современный интерфейс**: Стильная тёмная тема с горизонтальной прокруткой и цветными эмодзи.
+- **Локальная работа**: Все данные хранятся локально, без запросов к внешним API.
+
+---
+
+## Системное приложение (Windows)
+
+Вы можете использовать это приложение как глобальную утилиту для Windows, чтобы быстро вставлять эмодзи вообще в любой программе (блокнот, Telegram, Word и т.д.).
+
+### Установка и запуск
+
+1. Убедитесь, что у вас установлен Python.
+2. Установите необходимые библиотеки (выполните команду в терминале):
+   ```bash
+   pip install PyQt5 keyboard pyautogui pyperclip
+   ```
+
+### Как использовать
+
+1. Нажмите комбинацию клавиш `Ctrl + Alt + ;` (или `Ctrl + Alt + ж` в русской раскладке) в любом приложении.
+2. Возле курсора мыши появится всплывающее окно поиска.
+3. Начните вводить текст (например, "кот" или "смех").
+4. С помощью стрелочек на клавиатуре (или мышкой) выберите эмодзи.
+5. Нажмите `Enter` — окно исчезнет, а выбранный эмодзи автоматически вставится в ваш текст!
+
+---
+
+## Браузерное расширение
+
+### Установка (Chrome / Edge / Yandex / Brave)
+
+1. Откройте страницу управления расширениями в браузере:
+   - Chrome: `chrome://extensions/`
+   - Edge: `edge://extensions/`
+2. Включите **"Режим разработчика"** (обычно переключатель в правом верхнем углу).
+3. Нажмите кнопку **"Загрузить распакованное расширение"** (Load unpacked).
+4. Выберите папку `emoji-extension` из этого проекта.
+5. Готово!
+
+### Установка в Mozilla Firefox
+
+*Примечание: Firefox по умолчанию удаляет такие расширения после перезапуска браузера (если они не опубликованы официально).*
+
+1. Откройте страницу `about:debugging`.
+2. Перейдите в раздел **"Этот Firefox"**.
+3. Нажмите **"Загрузить временное дополнение..."**.
+4. Выберите файл `manifest.json` в папке `emoji-extension`.
+
+### Как использовать
+
+1. Кликните в любое текстовое поле на сайте.
+2. Введите двоеточие `:` и сразу же слово для поиска (например, `:огонь`, `:smile`).
+3. Под курсором появится панель с подходящими эмодзи.
+4. Выберите нужный эмодзи мышью или стрелочками и нажмите `Enter`.
+5. Текст `:ключевое_слово` будет заменен на эмодзи.
+
+---
+
+## Структура файлов
+
+- `global_app.pyw` — Основной скрипт глобального системного приложения на PyQt5.
+- `run_bg.vbs` — Скрипт для скрытого (фонового) запуска системного приложения `global_app.pyw`.
+- `emoji_search.py` — Логика движка поиска эмодзи по базе.
+- Папка `emoji-extension/` — Исходный код браузерного расширения (JS/CSS/HTML).
+- `emoji_tags_refined.json` — Локальная база данных всех эмодзи и их тегов на разных языках.
+
+---
+---
+
+# Emoji Searcher - System App & Browser Extension
+*(English Version)*
+
+A lightweight, fast, and unobtrusive tool that allows you to search and insert emojis anywhere. This project includes both a **Browser Extension** and a **Windows System App**.
 
 ## Features
 
-- **Universal Input Support**: Works in standard `<input>`, `<textarea>`, and complex `contenteditable` fields (like YouTube search, WhatsApp Web, Slack, etc.).
-- **Smart Trigger**: Type `:` followed by at least one character (e.g., `:cat`, `:улыбка`) to bring up the suggestion panel.
+- **Windows System App**: Works globally across all apps. Triggered by a hotkey, it pops up right next to your cursor.
+- **Browser Extension**: Works in standard `<input>`, `<textarea>`, and complex `contenteditable` fields using a simple `:keyword` trigger.
 - **Bilingual Search**: Searches through emoji metadata and tags in both **English** and **Russian**.
 - **Modern UI**: Features a sleek, dark-themed horizontal scrolling panel.
-- **Keyboard Navigation**: 
-  - `Left` / `Right` arrows to navigate.
-  - `Up` / `Down` arrows to jump by 5 items.
-  - `Enter` or `Tab` to insert.
-  - `Escape` to close the panel.
-- **Privacy First**: All data is stored locally within the extension. It requires no external API calls or tracking.
+- **Privacy First**: All data is stored locally. No external API calls or tracking.
 
-## Installation
+---
 
-### Google Chrome / Edge / Yandex / Brave (Chromium-based)
+## Windows System App
 
-1. Download or clone this repository to your computer.
-2. Open your browser and navigate to the extensions management page:
+Use this app as a global utility to quickly insert emojis into any application (Notepad, Telegram, Word, etc.).
+
+### Installation
+
+1. Ensure you have Python installed.
+2. Install the required libraries via terminal:
+   ```bash
+   pip install PyQt5 keyboard pyautogui pyperclip
+   ```
+
+### How to Use
+
+1. Press `Ctrl + Alt + ;` in any application.
+2. A search popup will appear near your mouse cursor.
+3. Type a keyword (e.g. "cat" or "smile").
+4. Use arrow keys or your mouse to select an emoji.
+5. Press `Enter` to insert the emoji directly into your text field!
+
+---
+
+## Browser Extension
+
+### Installation (Chrome / Edge / Yandex / Brave)
+
+1. Open the extensions management page:
    - Chrome: `chrome://extensions/`
    - Edge: `edge://extensions/`
-3. Enable **"Developer mode"** (usually a toggle in the top right corner).
-4. Click on the **"Load unpacked"** (Загрузить распакованное расширение) button.
-5. Select the `emoji-extension` folder containing the `manifest.json` file.
-6. The extension is now installed and active!
+2. Enable **"Developer mode"**.
+3. Click on **"Load unpacked"**.
+4. Select the `emoji-extension` folder.
 
-### Mozilla Firefox
+### Installation (Mozilla Firefox)
 
-*Note: Firefox has stricter rules for unpacked extensions. By default, they are installed temporarily and will be removed upon browser restart.*
+*Note: Firefox temporary installs are removed upon restart unless signed.*
 
-**Temporary Installation (for testing):**
-1. Open Firefox and navigate to `about:debugging`.
-2. Click on **"This Firefox"** (Этот Firefox) in the left sidebar.
-3. Click **"Load Temporary Add-on..."** (Загрузить временное дополнение...).
+1. Navigate to `about:debugging`.
+2. Click on **"This Firefox"**.
+3. Click **"Load Temporary Add-on..."**.
 4. Select the `manifest.json` file inside the `emoji-extension` folder.
 
-**Permanent Installation:**
-To install permanently, you need to either use Firefox Developer Edition/Nightly (and disable signature checks in `about:config`) or submit the extension to Mozilla Add-ons for a free, unlisted signature.
+### How to Use
 
-## How to Use
+1. Click into any text field on a website.
+2. Type a colon `:` followed by a keyword (e.g., `:fire`, `:smile`).
+3. A horizontal panel will appear below your cursor.
+4. Select an emoji with the mouse or arrow keys and press `Enter`.
+5. The text will be replaced with the emoji.
 
-1. Click into any text field on any website.
-2. Type a colon `:` immediately followed by a search word (e.g., `:fire`, `:огонь`, `:smile`).
-3. A horizontal panel will appear below your cursor with matching emojis.
-4. Use your mouse to click an emoji, or use the arrow keys to select and press `Enter`.
-5. The `:keyword` text will be automatically replaced with the selected emoji.
+---
 
 ## File Structure
 
-- `manifest.json`: Extension configuration and permissions.
-- `content.js`: The main logic for detecting input, searching data, and manipulating the DOM.
-- `style.css`: Styles for the dark-themed, horizontal emoji panel.
-- `emoji_data.json`: The local database containing emoji symbols, names, and bilingual tags.
+- `global_app.pyw`: The main PyQt5 script for the global system app.
+- `run_bg.vbs`: VBScript to run the system app silently in the background.
+- `emoji_search.py`: Core logic for searching the emoji database.
+- `emoji-extension/`: Source code for the browser extension (JS/CSS/HTML).
+- `emoji_tags_refined.json`: Local database containing all emojis and multilingual tags.
