@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Emoji Search",
+  "name": "Emoji Searcher",
   "version": "1.1",
   "description": "Search and insert emojis in any text field using :keyword",
   "permissions": [
@@ -25,7 +25,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "alexeyrf@github.com"
+      "id": "emoji-searcher@example.com"
     }
   }
 }
